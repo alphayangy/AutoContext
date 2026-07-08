@@ -40,6 +40,20 @@ def find_guidelines_root() -> Path:
     raise FileNotFoundError("Could not find guidelines/ directory")
 
 
+def load_index(guidelines_root: Path) -> dict[str, dict]:
+    """Load guidelines/index.json if present. Returns a name → atom-info map."""
+    import json
+    index_path = guidelines_root / "index.json"
+    if not index_path.exists():
+        return {}
+
+    try:
+        data = json.loads(index_path.read_text(encoding="utf-8"))
+        return {atom["name"]: atom for atom in data.get("atoms", [])}
+    except Exception:
+        return {}
+
+
 def parse_atom(path: Path) -> dict:
     text = path.read_text(encoding="utf-8")
 
@@ -70,8 +84,8 @@ def parse_atom(path: Path) -> dict:
         if stripped.startswith("**") and stripped.endswith("**") and core_idx is None:
             core_idx = i
             continue
-        # Acceptance sentence
-        if stripped.startswith("**This is working if:**"):
+        # Acceptance sentence (English or Chinese)
+        if stripped.startswith(("**This is working if:**", "**准则生效的标志:**")):
             accept_idx = i
             break
 
@@ -98,13 +112,29 @@ def parse_atom(path: Path) -> dict:
     }
 
 
-def find_atom(guidelines_root: Path, name: str) -> Path:
-    """Find atom file by name under guidelines/, ignoring .zh.md variants."""
+def find_atom(guidelines_root: Path, name: str, index: dict[str, dict], lang: str = "en") -> Path:
+    """Find atom file by name. Prefer index.yaml if available, fallback to os.walk."""
+    # Use index for fast lookup
+    if name in index:
+        key = "path_zh" if lang == "zh" else "path"
+        rel_path = index[name].get(key)
+        if rel_path:
+            path = guidelines_root / rel_path
+            if path.exists():
+                return path
+        # Fallback to English if requested language is missing
+        fallback = index[name].get("path")
+        if fallback:
+            path = guidelines_root / fallback
+            if path.exists():
+                return path
+
+    # Fallback: walk the directory
+    target = f"{name}.zh.md" if lang == "zh" else f"{name}.md"
     for root, _dirs, files in os.walk(guidelines_root):
-        for f in files:
-            if f == f"{name}.md":
-                return Path(root) / f
-    raise FileNotFoundError(f"Atom not found: {name}")
+        if target in files:
+            return Path(root) / target
+    raise FileNotFoundError(f"Atom not found: {name} (lang={lang})")
 
 
 def render_atom(atom: dict) -> str:
@@ -129,12 +159,12 @@ def render_atom(atom: dict) -> str:
     return "\n".join(lines)
 
 
-def render_section(title: str, atom_names: list[str], guidelines_root: Path) -> str:
+def render_section(title: str, atom_names: list[str], guidelines_root: Path, index: dict[str, dict], lang: str) -> str:
     if not atom_names:
         return ""
     out = [f"## {title}"]
     for name in atom_names:
-        path = find_atom(guidelines_root, name)
+        path = find_atom(guidelines_root, name, index, lang)
         atom = parse_atom(path)
         if not atom["core"]:
             raise ValueError(f"Atom {name} has no core sentence in {path}")
@@ -149,9 +179,11 @@ def main() -> int:
     parser.add_argument("--safety", default="", help="Comma-separated atom names")
     parser.add_argument("--output", "-o", help="Output file (default: stdout)")
     parser.add_argument("--guidelines-root", help="Path to guidelines/ directory")
+    parser.add_argument("--lang", default="en", choices=["en", "zh"], help="Atom language (default: en)")
     args = parser.parse_args()
 
     guidelines_root = Path(args.guidelines_root) if args.guidelines_root else find_guidelines_root()
+    index = load_index(guidelines_root)
 
     def split_names(s: str) -> list[str]:
         return [x.strip() for x in s.split(",") if x.strip()]
@@ -164,7 +196,7 @@ def main() -> int:
 
     rendered = []
     for title, names in sections:
-        section_text = render_section(title, names, guidelines_root)
+        section_text = render_section(title, names, guidelines_root, index, args.lang)
         if section_text:
             rendered.append(section_text)
 

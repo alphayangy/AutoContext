@@ -1,0 +1,998 @@
+{
+  "version": 1,
+  "generated_at": "2026-07-08T10:41:22.365520+00:00",
+  "count": 47,
+  "atoms": [
+    {
+      "name": "banned-ai-words",
+      "description": "Use in all generated prose. Prevents AI tells like \"delve\", \"leverage\", \"seamless\", \"furthermore\", \"it's important to note\" that mark text as machine-generated filler. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": [],
+      "conflicts": [],
+      "section": "output-format",
+      "path": "output-format/banned-ai-words.md",
+      "path_zh": "output-format/banned-ai-words.zh.md"
+    },
+    {
+      "name": "calibrate-assertion-to-evidence",
+      "description": "Use when making claims in prose. Prevents over-assertion (\"this proves\") and reflexive hedging (\"might possibly\") by matching verb strength to evidence. Use in writing-docs contexts.",
+      "profiles": [
+        "writing-docs"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": {
+        "user_intents": [
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "output-format",
+      "path": "output-format/calibrate-assertion-to-evidence.md",
+      "path_zh": "output-format/calibrate-assertion-to-evidence.zh.md"
+    },
+    {
+      "name": "concrete-over-abstract",
+      "description": "Use when generating prose. Prevents abstract category words like \"factors\", \"aspects\", \"issues\" that fill space without saying anything. Use in writing-docs contexts.",
+      "profiles": [
+        "writing-docs"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": {
+        "user_intents": [
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "output-format",
+      "path": "output-format/concrete-over-abstract.md",
+      "path_zh": "output-format/concrete-over-abstract.zh.md"
+    },
+    {
+      "name": "evidence-backed-assertions",
+      "description": "Use when making factual claims in prose. Prevents fabricated quotes, statistics, and attributions presented as fact. Use in writing-docs contexts.",
+      "profiles": [
+        "writing-docs"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "output-format",
+      "path": "output-format/evidence-backed-assertions.md",
+      "path_zh": "output-format/evidence-backed-assertions.zh.md"
+    },
+    {
+      "name": "no-em-dash",
+      "description": "Use in all generated text including CLAUDE.md, AGENTS.md, rules, comments, and commit messages. Prevents the em-dash, a strong AI-writing tell that disrupts flow and signals slop. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": [],
+      "conflicts": [],
+      "section": "output-format",
+      "path": "output-format/no-em-dash.md",
+      "path_zh": "output-format/no-em-dash.zh.md"
+    },
+    {
+      "name": "no-llm-attribution-in-commits",
+      "description": "Use when generating commit messages or PR descriptions. Prevents LLM signatures, co-author lines, and \"Generated with Claude Code\" footers that pollute history and may violate policy. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "output-format",
+      "path": "output-format/no-llm-attribution-in-commits.md",
+      "path_zh": "output-format/no-llm-attribution-in-commits.zh.md"
+    },
+    {
+      "name": "positive-instruction-framing",
+      "description": "Use when writing instructions or rules for an agent. Prevents vague compliance with negation by stating what to do, not what to avoid. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": [],
+      "conflicts": [],
+      "section": "output-format",
+      "path": "output-format/positive-instruction-framing.md",
+      "path_zh": "output-format/positive-instruction-framing.zh.md"
+    },
+    {
+      "name": "prefer-canonical-examples-over-rule-lists",
+      "description": "Use when writing instructions, rules, or guidance for an agent. Prevents brittle edge-case rule lists that bloat context and miss cases, by using a few diverse canonical examples instead. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": [],
+      "conflicts": [],
+      "section": "output-format",
+      "path": "output-format/prefer-canonical-examples-over-rule-lists.md",
+      "path_zh": "output-format/prefer-canonical-examples-over-rule-lists.zh.md"
+    },
+    {
+      "name": "bind-never-to-untrusted-source",
+      "description": "Use when an agent processes untrusted external content (email, issues, tickets). Prevents prompt injection from bypassing global NEVER rules by binding prohibitions to the untrusted source. Use in security contexts.",
+      "profiles": [
+        "security"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "safety",
+      "path": "safety/bind-never-to-untrusted-source.md",
+      "path_zh": "safety/bind-never-to-untrusted-source.zh.md"
+    },
+    {
+      "name": "bounded-consumption",
+      "description": "Use when building systems that serve users or agents with potentially unbounded requests. Prevents resource exhaustion from runaway loops, abuse, or infinite retries. Use in security contexts.",
+      "profiles": [
+        "security"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "safety",
+      "path": "safety/bounded-consumption.md",
+      "path_zh": "safety/bounded-consumption.zh.md"
+    },
+    {
+      "name": "fail-closed-on-error",
+      "description": "Use when designing error handling in security-sensitive code. Prevents fail-open behavior that grants access or proceeds when an error should have blocked the action. Use in security contexts.",
+      "profiles": [
+        "security"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "safety",
+      "path": "safety/fail-closed-on-error.md",
+      "path_zh": "safety/fail-closed-on-error.zh.md"
+    },
+    {
+      "name": "llm-output-as-untrusted",
+      "description": "Use when LLM-generated output flows into SQL, shell, DOM, eval, or tool calls. Prevents prompt injection and hallucination from becoming code execution or data corruption. Use in security contexts.",
+      "profiles": [
+        "security"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "safety",
+      "path": "safety/llm-output-as-untrusted.md",
+      "path_zh": "safety/llm-output-as-untrusted.zh.md"
+    },
+    {
+      "name": "minimal-privilege-agent-tools",
+      "description": "Use when designing agents or tool-calling systems. Prevents over-privileged agents that can run destructive operations without approval. Use in security contexts.",
+      "profiles": [
+        "security"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "safety",
+      "path": "safety/minimal-privilege-agent-tools.md",
+      "path_zh": "safety/minimal-privilege-agent-tools.zh.md"
+    },
+    {
+      "name": "no-destructive-git",
+      "description": "Use when running git commands. Prevents force-push, hard resets, squashing pushed commits, and other history-rewriting operations that destroy work or break reviewer tracking. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "safety",
+      "path": "safety/no-destructive-git.md",
+      "path_zh": "safety/no-destructive-git.zh.md"
+    },
+    {
+      "name": "no-prod-deploy-without-confirmation",
+      "description": "Use when changes may reach production or a high-stakes environment such as mainnet, prod, or live. Prevents accidental deployments, direct pushes to main, and irreversible releases. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "safety",
+      "path": "safety/no-prod-deploy-without-confirmation.md",
+      "path_zh": "safety/no-prod-deploy-without-confirmation.zh.md"
+    },
+    {
+      "name": "no-secrets",
+      "description": "Use when generating or reviewing any file that may contain credentials. Prevents committing API keys, tokens, passwords, and signing material into version control. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": [],
+      "conflicts": [],
+      "section": "safety",
+      "path": "safety/no-secrets.md",
+      "path_zh": "safety/no-secrets.zh.md"
+    },
+    {
+      "name": "check-data-grain",
+      "description": "Use when writing or reviewing SQL before it's finalized. Prevents SQL that runs but returns wrong results due to mismatched grain, aliases, or aggregation. Use in data-analysis contexts.",
+      "profiles": [
+        "data-analysis"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "files": [
+          "*.sql",
+          "dbt_project.yml",
+          "*.ipynb"
+        ],
+        "user_intents": [
+          "change-project",
+          "understand-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/check-data-grain.md",
+      "path_zh": "verification/check-data-grain.zh.md"
+    },
+    {
+      "name": "do-not-guess-schema",
+      "description": "Use when writing or reviewing SQL, dbt models, or notebooks. Prevents fabricating table names, columns, aliases, and metric definitions that can be inspected. Use in data-analysis contexts.",
+      "profiles": [
+        "data-analysis"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "files": [
+          "*.sql",
+          "dbt_project.yml",
+          "*.ipynb"
+        ],
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/do-not-guess-schema.md",
+      "path_zh": "verification/do-not-guess-schema.zh.md"
+    },
+    {
+      "name": "end-of-session-self-audit",
+      "description": "Use before reporting a task done or merging a large change. Prevents blind spots in the agent's own work by forcing a self-audit of confidence, gaps, and failure modes. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/end-of-session-self-audit.md",
+      "path_zh": "verification/end-of-session-self-audit.zh.md"
+    },
+    {
+      "name": "ensure-runs-before-claiming-done",
+      "description": "Use before reporting a task done. Prevents the common failure where code is written but doesn't run, or runs but doesn't pass its checks. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/ensure-runs-before-claiming-done.md",
+      "path_zh": "verification/ensure-runs-before-claiming-done.zh.md"
+    },
+    {
+      "name": "lock-design-before-point-estimates",
+      "description": "Use when interpreting experimental or statistical results. Prevents confirmation bias where seeing a number first bends the design to fit it. Use in research contexts.",
+      "profiles": [
+        "research"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "understand-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/lock-design-before-point-estimates.md",
+      "path_zh": "verification/lock-design-before-point-estimates.zh.md"
+    },
+    {
+      "name": "nitpicky-ordered-code-review",
+      "description": "Use when reviewing code. Prevents vague, unactionable, or unordered review feedback by requiring nitpicky findings ranked by severity with file:line references. Use in coding contexts.",
+      "profiles": [
+        "coding"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": {
+        "user_intents": [
+          "understand-project",
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/nitpicky-ordered-code-review.md",
+      "path_zh": "verification/nitpicky-ordered-code-review.zh.md"
+    },
+    {
+      "name": "no-hardcoded-results-in-tex",
+      "description": "Use when writing LaTeX or paper output that reports experimental results. Prevents hardcoded numbers that drift from the actual data when results change. Use in research contexts.",
+      "profiles": [
+        "research"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "files": [
+          "*.tex",
+          "*.bib",
+          "results/",
+          "figures/"
+        ],
+        "user_intents": [
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/no-hardcoded-results-in-tex.md",
+      "path_zh": "verification/no-hardcoded-results-in-tex.zh.md"
+    },
+    {
+      "name": "no-unverified-claims-from-secondary",
+      "description": "Use when writing claims that cite policies, statistics, or facts from secondary sources. Prevents second-hand misinformation presented as fact. Use in research contexts.",
+      "profiles": [
+        "research"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "produce-material",
+          "understand-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/no-unverified-claims-from-secondary.md",
+      "path_zh": "verification/no-unverified-claims-from-secondary.zh.md"
+    },
+    {
+      "name": "quote-before-answer",
+      "description": "Use when answering questions over long documents. Prevents hallucinated answers by forcing the agent to first quote relevant source text, then answer based on those quotes. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "understand-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/quote-before-answer.md",
+      "path_zh": "verification/quote-before-answer.zh.md"
+    },
+    {
+      "name": "run-silent-verbose-output",
+      "description": "Use when running build, test, or lint commands in an agent workflow. Prevents verbose output from flooding context and avoids forced re-runs caused by pipe truncation. Use in coding contexts.",
+      "profiles": [
+        "coding"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/run-silent-verbose-output.md",
+      "path_zh": "verification/run-silent-verbose-output.zh.md"
+    },
+    {
+      "name": "run-smallest-relevant-test",
+      "description": "Use after any code change in a project with tests. Prevents skipping verification or waiting for the full suite when one test would confirm the change. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "files": [
+          "*test*",
+          "*spec*",
+          "tests/",
+          "test/"
+        ],
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/run-smallest-relevant-test.md",
+      "path_zh": "verification/run-smallest-relevant-test.zh.md"
+    },
+    {
+      "name": "show-evidence-not-just-assertion",
+      "description": "Use whenever reporting a result, fix, or completion. Prevents success claims that reviewers can't verify, by requiring the evidence to be shown alongside the claim. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/show-evidence-not-just-assertion.md",
+      "path_zh": "verification/show-evidence-not-just-assertion.zh.md"
+    },
+    {
+      "name": "verify-before-assert",
+      "description": "Use whenever claiming state, status, or completion. Prevents fabricated claims that code is configured, running, tested, or shipped when it isn't. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/verify-before-assert.md",
+      "path_zh": "verification/verify-before-assert.zh.md"
+    },
+    {
+      "name": "verify-citation-exists",
+      "description": "Use when writing citations or references into research output. Prevents fabricated papers, authors, and DOIs that don't exist. Use in research contexts.",
+      "profiles": [
+        "research"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "files": [
+          "*.tex",
+          "*.bib",
+          "references/",
+          "citations/"
+        ],
+        "user_intents": [
+          "produce-material",
+          "understand-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/verify-citation-exists.md",
+      "path_zh": "verification/verify-citation-exists.zh.md"
+    },
+    {
+      "name": "verify-rendered-ui",
+      "description": "Use after making frontend or UI changes. Prevents reporting \"done\" based only on code that looks right, when the rendered interface is broken. Use in frontend-product contexts.",
+      "profiles": [
+        "frontend-product"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/verify-rendered-ui.md",
+      "path_zh": "verification/verify-rendered-ui.zh.md"
+    },
+    {
+      "name": "write-fuzzers-not-hand-tests",
+      "description": "Use when asking an LLM to write tests. Prevents performative hand-tests that pass review but miss real bugs, by directing the LLM to write fuzzers and property tests instead. Use in coding contexts.",
+      "profiles": [
+        "coding"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "verification",
+      "path": "verification/write-fuzzers-not-hand-tests.md",
+      "path_zh": "verification/write-fuzzers-not-hand-tests.zh.md"
+    },
+    {
+      "name": "address-root-cause-not-symptom",
+      "description": "Use when fixing a bug or failure. Prevents symptom-suppression that makes the error go away while leaving the underlying cause to resurface later. Use in coding contexts.",
+      "profiles": [
+        "coding"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/address-root-cause-not-symptom.md",
+      "path_zh": "working-standard/address-root-cause-not-symptom.zh.md"
+    },
+    {
+      "name": "audio-anchored-timeline",
+      "description": "Use when generating video or animation that includes voiceover or music, especially with TTS. Prevents timeline drift where visual timings don't match actual audio duration. Use in creative-media contexts.",
+      "profiles": [
+        "creative-media"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": {
+        "files": [
+          "remotion.config.*",
+          "*.tsx",
+          "audio/",
+          "voiceover/"
+        ],
+        "user_intents": [
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/audio-anchored-timeline.md",
+      "path_zh": "working-standard/audio-anchored-timeline.zh.md"
+    },
+    {
+      "name": "avoid-generic-design-defaults",
+      "description": "Use when generating UI or visual design for a frontend product. Prevents the default AI-generated look (Tailwind blue-500, purple-blue gradients, 3-column icon grids, blob SVGs) that makes every product look identical. Use in frontend-product contexts.",
+      "profiles": [
+        "frontend-product"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": {
+        "user_intents": [
+          "change-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/avoid-generic-design-defaults.md",
+      "path_zh": "working-standard/avoid-generic-design-defaults.zh.md"
+    },
+    {
+      "name": "bound-change-size",
+      "description": "Use on any non-trivial change. Prevents oversized diffs that can't be reviewed safely by requiring a size cap with staged breakdown when exceeded. Use in coding contexts.",
+      "profiles": [
+        "coding"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/bound-change-size.md",
+      "path_zh": "working-standard/bound-change-size.zh.md"
+    },
+    {
+      "name": "comments-default-none-only-why",
+      "description": "Use when writing or reviewing code. Prevents noise comments that restate code, narrate steps, or rot with time, by defaulting to no comment and adding only when the why is non-obvious. Use in coding contexts.",
+      "profiles": [
+        "coding"
+      ],
+      "scopes": [
+        "claude",
+        "rules"
+      ],
+      "priority": "medium",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/comments-default-none-only-why.md",
+      "path_zh": "working-standard/comments-default-none-only-why.zh.md"
+    },
+    {
+      "name": "goal-driven-execution",
+      "description": "Use on any multi-step or ambiguous task. Prevents weak success criteria like \"make it work\" that require constant clarification and endless looping. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/goal-driven-execution.md",
+      "path_zh": "working-standard/goal-driven-execution.zh.md"
+    },
+    {
+      "name": "jit-context-load-by-reference",
+      "description": "Use when working within a context-limited agent. Prevents context bloat from pre-loading full data, by loading details just-in-time via light references. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": [],
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/jit-context-load-by-reference.md",
+      "path_zh": "working-standard/jit-context-load-by-reference.zh.md"
+    },
+    {
+      "name": "minimal-high-signal-context",
+      "description": "Use whenever working within a context-limited agent. Prevents context rot and dilution by keeping the working context to the smallest high-signal token set that achieves the goal. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": [],
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/minimal-high-signal-context.md",
+      "path_zh": "working-standard/minimal-high-signal-context.zh.md"
+    },
+    {
+      "name": "no-initiative-beyond-task",
+      "description": "Use on every task. Prevents scope creep, unrequested docs or READMEs, and \"while I'm here\" refactors that bloat the diff. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/no-initiative-beyond-task.md",
+      "path_zh": "working-standard/no-initiative-beyond-task.zh.md"
+    },
+    {
+      "name": "preserve-existing-behavior",
+      "description": "Use when changing code that has existing users, callers, or contracts. Prevents regressions disguised as cleanup or design taste. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/preserve-existing-behavior.md",
+      "path_zh": "working-standard/preserve-existing-behavior.zh.md"
+    },
+    {
+      "name": "read-before-editing",
+      "description": "Use before modifying any file. Prevents blind edits that break context, miss existing patterns, or duplicate existing logic. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/read-before-editing.md",
+      "path_zh": "working-standard/read-before-editing.zh.md"
+    },
+    {
+      "name": "simplicity-first",
+      "description": "Use whenever writing or reviewing code. Prevents speculative abstractions, unrequested flexibility, and overcomplication that a senior engineer would reject. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/simplicity-first.md",
+      "path_zh": "working-standard/simplicity-first.zh.md"
+    },
+    {
+      "name": "surgical-changes",
+      "description": "Use when editing existing code. Prevents unrelated refactors, vanity cleanup, and scope creep that make review harder and introduce risk. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/surgical-changes.md",
+      "path_zh": "working-standard/surgical-changes.zh.md"
+    },
+    {
+      "name": "think-before-coding",
+      "description": "Use before implementing any non-trivial change. Prevents assumption-driven coding, hidden confusion, and silent picks between interpretations. Applies to all profiles.",
+      "profiles": [
+        "all"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project",
+          "understand-project"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/think-before-coding.md",
+      "path_zh": "working-standard/think-before-coding.zh.md"
+    },
+    {
+      "name": "why-first-then-act",
+      "description": "Use before any non-trivial product or design work. Prevents purposeless implementation, feature cargo-culting, and \"just do it\" pressure that leads to building the wrong thing. Use in product-design contexts.",
+      "profiles": [
+        "product-design"
+      ],
+      "scopes": [
+        "claude"
+      ],
+      "priority": "high",
+      "triggers": {
+        "user_intents": [
+          "change-project",
+          "produce-material"
+        ]
+      },
+      "conflicts": [],
+      "section": "working-standard",
+      "path": "working-standard/why-first-then-act.md",
+      "path_zh": "working-standard/why-first-then-act.zh.md"
+    }
+  ]
+}
