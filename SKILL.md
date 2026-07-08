@@ -295,6 +295,7 @@ Review 阶段会把脚本输出和 atom 原文做 `diff`，任何非空白差异
 | 代码项目 + 多 agent | `AGENTS.md` 为主 + `CLAUDE.md` import `AGENTS.md` |
 | 大型/混合项目 | `AGENTS.md` + `CLAUDE.md` + `.claude/rules/*.md` |
 | 已有 `AGENTS.md` | `CLAUDE.md` 中写 `@AGENTS.md`，不重复；其他工具文件 import `AGENTS.md` |
+| 已有 `CLAUDE.md` | 提取通用规则到 `AGENTS.md`，`CLAUDE.md` 改为 import `AGENTS.md`；详见 [6.1.1 已有 CLAUDE.md 迁移](#611-已有-claudemd-迁移) |
 | 空项目 | 最小 `AGENTS.md`（通用）或最小 `CLAUDE.md`（若确认只用 Claude） |
 
 #### Agent 与产物映射
@@ -314,6 +315,44 @@ Review 阶段会把脚本输出和 atom 原文做 `diff`，任何非空白差异
 | Trae                         | `AGENTS.md` + `.trae/rules/*.md`（可选）                | Trae 自有规则格式                                     |
 
 原则：**尽量以 `AGENTS.md` 为单源，各工具原生文件只 import 或引用它，不重复内容。**
+
+#### 6.1.1 已有 CLAUDE.md 迁移
+
+当项目已有 `CLAUDE.md` 但检测/用户选择要求生成 `AGENTS.md`（多 Agent、通用标准、或用户主动要求）时，必须按以下顺序处理，**不能让 `AGENTS.md` 反过来引用 `CLAUDE.md`**：
+
+1. **读取旧 `CLAUDE.md`**，拆成三类内容：
+   - **通用规则**（任何 Agent 都该遵守）→ 迁移到 `AGENTS.md` 的 `Working Rules` / `Verification` / `Safety`
+   - **Claude Code 专属指令**（`@` 语法、`/init`、Claude-specific 工具调用等）→ 留在新的 `CLAUDE.md`
+   - **项目事实**（技术栈、目录、命令）→ 只写在 `AGENTS.md`，`CLAUDE.md` 通过 `@AGENTS.md` 自动获得
+   - **多步骤流程** → 建议拆成 `.claude/skills/`，不塞进上下文文件
+
+2. **生成完整 `AGENTS.md`**：
+   - `Working Rules` / `Verification` / `Safety` 必须用 `tools/render-atoms.py` 渲染
+   - 必须把旧 `CLAUDE.md` 中的通用规则对应 atom 召回并渲染进去
+   - 不能因为是“从 CLAUDE.md 搬过来的”就手工改写或压缩
+
+3. **重写 `CLAUDE.md` 为最小 import 版本**：
+   ```md
+   # Project Context
+
+   Claude Code 请先阅读 `@AGENTS.md` 获取项目通用上下文。
+
+   ## Claude-specific pointers
+   - 多步骤工作流见 `.claude/skills/`
+   - 项目入口命令、技术栈、通用规则全部在 `@AGENTS.md`
+   ```
+   - 新的 `CLAUDE.md` 只保留 Claude-specific 指针，不重复 `AGENTS.md` 内容
+   - 行数尽量控制在 30 行以内
+
+4. **禁止反向引用**：
+   - `AGENTS.md` 里不准出现 `@CLAUDE.md` 或 "详见 `CLAUDE.md`"
+   - 原因：`AGENTS.md` 是单源，Codex/Cursor/Kimi 等读到它时不能依赖 Claude-specific 文件
+
+5. **Review 专项检查**：
+   - 旧 `CLAUDE.md` 的通用规则是否都进了 `AGENTS.md`？
+   - 新 `CLAUDE.md` 是否写了 `@AGENTS.md`？
+   - `AGENTS.md` 是否没有引用 `CLAUDE.md`？
+   - 是否出现循环引用或重复段落？
 
 ### 6.2 CLAUDE.md / AGENTS.md 结构
 
@@ -506,6 +545,7 @@ Reason:
 | 12 | **项目事实准确** | `Project Overview` / `Commands` 里的技术栈、目录、命令与扫描到的文件一致 | 回 Step 1 重新检测 |
 | 13 | **无重复 README 大段内容** | 没有从 `README.md` 整段复制进上下文文件 | 改成一句话摘要或指针 |
 | 14 | **无 lint/format 规则口语化** | 没有把 ESLInt/Prettier/black 等格式规则写成自然语言大段 | 删除，交给项目已有 linter |
+| 15 | **上下文文件引用方向正确** | 若同时存在 `CLAUDE.md` + `AGENTS.md`：`CLAUDE.md` 引用 `AGENTS.md`，`AGENTS.md` 不引用 `CLAUDE.md`；已通过 `tools/verify-context.py` | 按 Step 6.1.1 修正引用方向，再运行脚本验证 |
 
 #### 反向抽查（必须执行）
 
@@ -521,7 +561,7 @@ Reason:
 
 #### Review 不能全是 ✅
 
-**任何 proposal 都能找到至少一个可改进点。** 如果 Review 表 14 项全是 ✅，说明 Review 做得太松。必须至少找到一项：
+**任何 proposal 都能找到至少一个可改进点。** 如果 Review 表 15 项全是 ✅，说明 Review 做得太松。必须至少找到一项：
 
 - 某条可以删的 atom（M7：删了不会犯错）
 - 某条表述可以更贴近 atom 原文
@@ -588,6 +628,7 @@ Reason:
   - 是否把多步流程塞进了 `CLAUDE.md` / `AGENTS.md`？（检查是否有“先 X，再 Y，最后 Z”式的连续步骤）
   - `Working Rules` / `Verification` / `Safety` 里是否混入了项目事实或操作流程？
   - 是否包含相互冲突的规则？
+  - **是否运行了 `python3 tools/verify-context.py`？** 若同时生成 `CLAUDE.md` + `AGENTS.md`，必须验证 `CLAUDE.md` 引用了 `AGENTS.md` 且 `AGENTS.md` 没有反向引用 `CLAUDE.md`。
 
 ### 7.2 写入后的默认提示
 

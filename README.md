@@ -1,22 +1,27 @@
 # Auto Context
 
+> English | [中文](README.zh.md)
+
 A project onboarding skill + context compiler for AI coding agents.
 
 Scans your workspace, detects the project profile, recalls guideline atoms, and generates a minimal but effective `CLAUDE.md`, `AGENTS.md`, or agent-specific context pack.
 
 ## Why
 
-Most agent context files are either:
-- Too bloated, copied from READMEs and leaked workflows.
-- Too vague, just a few generic slogans.
-- Constantly rewritten by the LLM, losing the original intent.
+Every new agent session starts the same way: you explain the project, repeat the conventions, and correct the same mistakes. Existing tools only solve part of this:
 
-Auto Context fixes this by:
-1. Detecting project signals with `tree`, not exhaustive file reads.
-2. Classifying the project profile (`coding`, `frontend-product`, `data-analysis`, etc.).
-3. Recalling **guideline atoms** from a curated rule base.
-4. Rendering rules deterministically via `tools/render-atoms.py` so the LLM cannot simplify or rewrite them.
-5. Writing a reviewable, version-controllable context file.
+- **Coverage is too narrow.** Claude Code `/init` and `AGENTS.md` are still mostly about code repos. Research reports, product docs, data analysis, writing projects, and creative work are left out — so users have to write context from scratch for anything that is not pure engineering.
+- **Quality is too fragile.** Hand-written `AGENTS.md` / `CLAUDE.md` files quickly accumulate context-quality smells: README copy-paste, leaked multi-step workflows, lint rules rewritten as prose, and conflicting instructions. The agent ends up missing constraints, contradicting itself, or wasting tokens on noise.
+- **There is no credible "how-to-work" layer.** `/init` tells the agent *what* the project is, and skills tell it how to run a specific workflow. But neither provides stable, reusable working standards distilled from real usage. Agents keep reinventing "read before editing", "run the smallest test", or "do not guess schema" every session.
+
+Auto Context is a **context compiler** with a curated library of working rules:
+
+- **Broad coverage** across code and non-code work via Context Profiles.
+- **Quality control** by selecting, ranking, and rendering rules deterministically — no LLM simplification, no README bloat, no workflow leakage.
+- **Credible rules** distilled from a large corpus of real `CLAUDE.md` / `AGENTS.md` files collected across the web, plus empirical research on agent manifests. These are reusable working standards extracted from many projects, not rules invented for a single session.
+- **Clean separation**: project facts and long-term rules go into `CLAUDE.md` / `AGENTS.md`, multi-step workflows become `.claude/skills/`, path-specific rules become `.claude/rules/`.
+
+> `/init` for every kind of work, not just code repos.
 
 ## Supported Agents
 
@@ -94,7 +99,8 @@ python3 tools/render-atoms.py \
 ```
 auto-context/
 ├── SKILL.md                  # Skill entry point for Claude Code / Cursor
-├── README.md                 # This file
+├── README.md                 # This file (English)
+├── README.zh.md              # Chinese version
 ├── LICENSE                   # MIT
 ├── install.sh                # Multi-agent install script
 ├── .gitignore
@@ -106,7 +112,8 @@ auto-context/
 ├── references/               # Reference docs (meta-rules, etc.)
 │   └── meta-rules.md
 └── tools/
-    └── render-atoms.py       # Deterministic atom renderer
+    ├── render-atoms.py       # Deterministic atom renderer
+    └── verify-context.py     # Verify CLAUDE.md / AGENTS.md reference direction
 ```
 
 ## Guideline Atoms
