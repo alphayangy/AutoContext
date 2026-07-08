@@ -7,6 +7,11 @@ __pycache__/
 venv/
 .env
 
+# Editor / OS metadata
+.obsidian/
+.vscode/
+.idea/
+
 # Installed copies that might be created during local testing
 .claude/
 .cursor/
