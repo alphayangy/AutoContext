@@ -156,12 +156,34 @@ Atoms are grouped into `working-standard`, `verification`, `safety`, and `output
 
 ## Customizing
 
-To add your own atoms:
+### Adding an atom
 
-1. Create a new `.md` file under `guidelines/<section>/`.
-2. Add frontmatter with `name`, `profiles`, `priority`, and optional `triggers`/`conflicts`.
-3. Write a bold core sentence, expansion bullets, and an acceptance sentence.
-4. Reinstall or symlink the skill to your agent.
+1. Create a new `.md` file under `guidelines/<section>/` (e.g. `guidelines/working-standard/my-rule.md`).
+2. Add YAML frontmatter with `name`, `profiles`, `priority`, and optional `scopes`, `triggers`, `conflicts`.
+3. Write a bold core sentence, expansion bullets, and an acceptance sentence (`**This is working if:** ...`).
+4. If you maintain Chinese atoms, also create `guidelines/<section>/my-rule.zh.md` with the same structure.
+5. Regenerate the atom index:
+   ```bash
+   python3 tools/build-index.py
+   ```
+6. Run tests to make sure the index is consistent:
+   ```bash
+   python3 tests/test_index.py
+   ```
+7. Reinstall or symlink the skill to your agent.
+
+### Removing an atom
+
+1. Delete the atom file(s) from `guidelines/<section>/` (both `.md` and `.zh.md` if present).
+2. Regenerate the index:
+   ```bash
+   python3 tools/build-index.py
+   ```
+3. Run tests:
+   ```bash
+   python3 tests/test_index.py
+   ```
+4. Reinstall the skill.
 
 ## License
 
