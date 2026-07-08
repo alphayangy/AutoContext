@@ -27,14 +27,16 @@ Auto Context is a **context compiler** with a curated library of working rules:
 
 | Agent | Output File | Install Path |
 |-------|-------------|--------------|
-| Claude Code | `CLAUDE.md` + `AGENTS.md` | `~/.claude/skills/auto-context/` or `.claude/skills/auto-context/` |
 | Cursor | `AGENTS.md` + `.cursor/rules/` (optional) | `.cursor/skills/auto-context/` |
-| Kimi Code | `AGENTS.md` | project root or `.kimi-code/` |
-| Windsurf / Cline / Trae | `AGENTS.md` + native rules | `.windsurfrules` / `.clinerules` / `.trae/rules/` |
-| OpenAI Codex | `AGENTS.md` | project root |
+| Claude Code | `CLAUDE.md` + `AGENTS.md` | `~/.claude/skills/auto-context/` or `.claude/skills/auto-context/` |
 | GitHub Copilot | `AGENTS.md` + `.github/copilot-instructions.md` (optional) | `.github/` |
-| Antigravity | `AGENTS.md` + `GEMINI.md` (optional) | `.gemini/GEMINI.md` or rules config |
+| OpenAI Codex | `AGENTS.md` | project root |
+| Windsurf | `AGENTS.md` + `.windsurfrules` (optional) | project root |
+| Cline / Roo Code | `AGENTS.md` + `.clinerules` (optional) | project root |
+| Kimi Code | `AGENTS.md` | project root or `.kimi-code/` |
+| Trae | `AGENTS.md` + `.trae/rules/*.md` (optional) | `.trae/rules/` |
 | Gemini CLI / Firebase Studio | `AGENTS.md` + `GEMINI.md` (optional) | project root or `.gemini/` |
+| Antigravity | `AGENTS.md` + `GEMINI.md` (optional) | `.gemini/GEMINI.md` or rules config |
 
 ## Install
 
