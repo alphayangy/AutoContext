@@ -31,6 +31,10 @@ Auto Context is a **context compiler** with a curated library of working rules:
 | Cursor | `AGENTS.md` + `.cursor/rules/` (optional) | `.cursor/skills/auto-context/` |
 | Kimi Code | `AGENTS.md` | project root or `.kimi-code/` |
 | Windsurf / Cline / Trae | `AGENTS.md` + native rules | `.windsurfrules` / `.clinerules` / `.trae/rules/` |
+| OpenAI Codex | `AGENTS.md` | project root |
+| GitHub Copilot | `AGENTS.md` + `.github/copilot-instructions.md` (optional) | `.github/` |
+| Antigravity | `AGENTS.md` + `GEMINI.md` (optional) | `.gemini/GEMINI.md` or rules config |
+| Gemini CLI / Firebase Studio | `AGENTS.md` + `GEMINI.md` (optional) | project root or `.gemini/` |
 
 ## Install
 
