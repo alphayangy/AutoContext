@@ -98,7 +98,8 @@ python3 tools/render-atoms.py \
 
 ```
 auto-context/
-├── SKILL.md                  # Skill entry point for Claude Code / Cursor
+├── SKILL.md                  # Skill entry point for Claude Code / Cursor (English)
+├── SKILL.zh.md               # Skill entry point (Chinese)
 ├── README.md                 # This file (English)
 ├── README.zh.md              # Chinese version
 ├── LICENSE                   # MIT

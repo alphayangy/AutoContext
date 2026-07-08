@@ -98,7 +98,8 @@ python3 tools/render-atoms.py \
 
 ```
 auto-context/
-├── SKILL.md                  # Claude Code / Cursor 的 skill 入口
+├── SKILL.md                  # Claude Code / Cursor 的 skill 入口（英文）
+├── SKILL.zh.md               # skill 入口（中文）
 ├── README.md                 # 英文文档
 ├── README.zh.md              # 中文文档
 ├── LICENSE                   # MIT
