@@ -1,0 +1,15 @@
+.DS_Store
+*.log
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+
+# Installed copies that might be created during local testing
+.claude/
+.cursor/
+.kimi-code/
+AGENTS.md
+CLAUDE.md

@@ -1,0 +1,292 @@
+{
+  "main": {
+    "id": "0624a13dc4b8514e",
+    "type": "split",
+    "children": [
+      {
+        "id": "57b08348d5d279ab",
+        "type": "tabs",
+        "dimension": 74.3992606284658,
+        "children": [
+          {
+            "id": "dad2853199751c18",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "guidelines/working-standard/goal-driven-execution.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "goal-driven-execution"
+            },
+            "group": "fbc35f3214c67da9"
+          },
+          {
+            "id": "1d7fff90a9a80f94",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKILL.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SKILL"
+            }
+          },
+          {
+            "id": "f87e81f21d4985c7",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "SKILL.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SKILL"
+            }
+          },
+          {
+            "id": "4bf6cadfed81499a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "guidelines/output-format/banned-ai-words.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "banned-ai-words"
+            }
+          }
+        ]
+      },
+      {
+        "id": "d69bb94ff01a58cd",
+        "type": "tabs",
+        "dimension": 25.600739371534196,
+        "children": [
+          {
+            "id": "45df1e9a5ddf0cb3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "guidelines/working-standard/goal-driven-execution.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "goal-driven-execution 的大纲"
+            },
+            "group": "fbc35f3214c67da9"
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "7110cebe7421893f",
+    "type": "split",
+    "children": [
+      {
+        "id": "5fc4799bcef933ea",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "50e0df9d9506012c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "fa718bda9fb48f31",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "cbac16adc882fc56",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 290.5
+  },
+  "right": {
+    "id": "804fce5091770556",
+    "type": "split",
+    "children": [
+      {
+        "id": "40014f96932543aa",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "95297845c1ff1c71",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "guidelines/working-standard/goal-driven-execution.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "goal-driven-execution 的反向链接列表"
+            }
+          },
+          {
+            "id": "fb8173b5d546f592",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "guidelines/working-standard/goal-driven-execution.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "goal-driven-execution 的出链列表"
+            }
+          },
+          {
+            "id": "0072c2971d52f5ae",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "d9cd7a60e3254536",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "ccd92793ea9d658a",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "guidelines/working-standard/goal-driven-execution.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "goal-driven-execution 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "50e0df9d9506012c",
+  "lastOpenFiles": [
+    "docs/design-zh.md",
+    "docs",
+    "LICENSE",
+    "install.sh",
+    "README.md",
+    "guidelines/working-standard/goal-driven-execution.zh.md",
+    "guidelines/working-standard/goal-driven-execution.md",
+    "references/claude-md-reference/universal/karpathy-inspired_CLAUDE.md",
+    "guidelines/working-standard/think-before-coding.md",
+    "SKILL.md",
+    "guidelines/output-format/banned-ai-words.md",
+    "tools/render-atoms.py",
+    "tools",
+    "guidelines/working-standard/think-before-coding.zh.md",
+    "auto-context设计文档.md",
+    "references/techniques-overview.md",
+    "references/meta-rules.md",
+    "references/REVIEW_CRITERIA.md",
+    "guidelines/output-format/evidence-backed-assertions.zh.md",
+    "guidelines/output-format/concrete-over-abstract.zh.md",
+    "guidelines/output-format/calibrate-assertion-to-evidence.zh.md",
+    "guidelines/output-format/banned-ai-words.zh.md",
+    "guidelines/safety/bind-never-to-untrusted-source.zh.md",
+    "guidelines/output-format/positive-instruction-framing.zh.md",
+    "guidelines/verification/quote-before-answer.zh.md",
+    "guidelines/working-standard/jit-context-load-by-reference.zh.md",
+    "guidelines/verification/write-fuzzers-not-hand-tests.zh.md",
+    "guidelines/verification/run-silent-verbose-output.zh.md",
+    "guidelines/safety/bind-never-to-untrusted-source.md",
+    "guidelines/output-format/positive-instruction-framing.md",
+    "guidelines/verification/quote-before-answer.md",
+    "guidelines/working-standard",
+    "guidelines/verification",
+    "guidelines/safety",
+    "guidelines/output-format",
+    "guidelines"
+  ]
+}
